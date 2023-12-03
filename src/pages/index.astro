@@ -1,29 +1,58 @@
 ---
 const nav = [
   {
-    href: "about",
-    label: "会社情報",
+    href: "/",
+    label: "ホーム"
   },
   {
-    href: "contact",
-    label: "お問い合わせ",
+    href: "/company",
+    label: "会社情報"
   },
-];
+  {
+    href: "/contact",
+    label: "お問い合わせ"
+  },
+]
+
+const active = "/company";
 ---
 
-<html>
-  <meta charset="UTF-8" />
-  <ul>
-    {
-      nav.map((elms) => {
-        return (
-          <li>
-            <a href={elms.href}>{elms.label}</a>
-          </li>
-        );
-      })
-    }
-  </ul>
-
-
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ナビゲーション</h1>
+    <nav>    
+      <ul>
+        {nav.map((item)=>{
+          return <li class:list={[(item.href === active && "is-active")]}><a href={item.href}>{item.label}</a></li>
+        })}
+    </ul>
+  </nav>
+  </body>
 </html>
+
+<style lang="scss">
+  nav {
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      li {
+        margin-right: 1em;
+        a {
+          text-decoration: none;
+          color: #000;
+        }
+        &.is-active a{
+          color: green;
+        }
+      }
+    }
+  }
+</style>
